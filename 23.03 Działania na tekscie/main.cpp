@@ -1,9 +1,6 @@
 #include <iostream>
-#include <cstring>
 
-
-
-void toHigh(char *text) {
+void toHigh(char *text){
     while(*text) {
         if ('a' <= *text && *text <= 'z') {
             *text += ('A' - 'a');
@@ -11,8 +8,7 @@ void toHigh(char *text) {
         text++;
     }
 }
-
-void toLow(char *text) {
+void toLow(char *text){
     while(*text) {
         if ('A' <= *text && *text <= 'Z') {
             *text += ('a' - 'A');
@@ -20,8 +16,7 @@ void toLow(char *text) {
         text++;
     }
 }
-
-int textSize(const char *text) {
+int textSize(const char *text){
     int size = 0;
     while(*(text + size)){
         size++;
@@ -29,53 +24,21 @@ int textSize(const char *text) {
     return size;
 }
 
-void usage(char *programName) {
-    printf("Usage: %s operation \"text to process\"\n", programName);
-    printf("Available operations:\n");
-    printf("\tupper\n");
-    printf("\tlower\n");
-    printf("\tsize\n");
-    printf("\tall\n");
-}
-
-int main(int argc, char* argv[]) {
-
-    if (argc != 3) {
-        usage(argv[0]);
-        return 1;
-    }
-
-
+int main() {
     char text[100];
-
-    strncpy(text, argv[2], 99);
-    text[99] = '\0';
-
-
-    if (!strcmp("upper", argv[1])) {
+    do {
+        fgets(text,100, stdin);
+        text[textSize(text) - 1 ] = 0;
+        if(!text[0]){
+            return 0;
+        }
+        printf("%s\n", text);
         toHigh(text);
         printf("%s\n", text);
-        return 0;
-    }
-
-    if (!strcmp("lower", argv[1])) {
         toLow(text);
         printf("%s\n", text);
-        return 0;
-    }
-
-    if (!strcmp("size", argv[1])) {
         printf("%d\n", textSize(text));
-        return 0;
-    }
+    }while(true);
+    return 0;
 
-    if (!strcmp("all", argv[1])) {
-
-        printf("Oryginal: %s\n", text);
-        toHigh(text);
-        printf("Wielkie: %s\n", text);
-        toLow(text);
-        printf("Male: %s\n", text);
-        printf("Rozmiar: %d\n", textSize(argv[2]));
-        return 0;
-    }
+}

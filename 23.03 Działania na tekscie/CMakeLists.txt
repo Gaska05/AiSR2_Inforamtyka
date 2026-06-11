@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 4.1)
-project(30_03_2026)
+cmake_minimum_required(VERSION 3.27)
+project(tekst)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(30_03_2026 main.cpp)
+add_executable(tekst main.cpp)
